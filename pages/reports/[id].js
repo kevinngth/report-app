@@ -1,26 +1,52 @@
 import Head from "next/head";
-import Link from "next/link";
+import Date from "../../components/date";
 import Layout from "../../components/layout";
+import { fetchPaths, getReport } from "../../api";
 
-export default function Report() {
+export default function Report({ reportData }) {
+    const {
+        id,
+        title,
+        dateCreated,
+        username,
+        content,
+        isApproved,
+        approvedTimestamp,
+    } = reportData;
     return (
         <Layout>
             <Head>
-                <title>Report</title>
+                <title>{title}</title>
             </Head>
-            <h1>Report</h1>
-            <h2>
-                <Link href="/">
-                    <a>Back to home</a>
-                </Link>
-            </h2>
+            {title}
+            <br />
+            Created by {username}, <Date dateString={dateCreated} />
+            <br />
+            {content}
+            <br />
+            {isApproved == "true" ? (
+                <>
+                    Approved <Date dateString={approvedTimestamp} />
+                </>
+            ) : (
+                "Not approved"
+            )}
         </Layout>
     );
 }
 
 export async function getStaticPaths() {
-    // Return a list of possible value for id
+    const paths = fetchPaths();
+    return {
+        paths,
+        fallback: false,
+    };
 }
-export async function getServerSideProps({ params }) {
-    // Fetch necessary data for the blog post using params.id
+export async function getStaticProps({ params }) {
+    const [reportData] = getReport(params.id);
+    return {
+        props: {
+            reportData,
+        },
+    };
 }

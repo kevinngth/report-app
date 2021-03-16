@@ -1,10 +1,10 @@
 const { reports } = require("../util/const");
 
-async function fetchAll() {
+function fetchAll() {
     return reports;
 }
 
-async function fetchPaths() {
+function fetchPaths() {
     const paths = reports.map((report) => {
         return {
             params: {
@@ -15,4 +15,9 @@ async function fetchPaths() {
     return paths;
 }
 
-module.exports = { fetchAll, fetchPaths };
+function getReport(id) {
+    const result = reports.filter((report) => report.id === id);
+    return result;
+}
+
+module.exports = { fetchAll, fetchPaths, getReport };
