@@ -1,4 +1,8 @@
-const { reports } = require("../util/const");
+const { user, reports } = require("../util/const");
+
+function login() {
+    return user;
+}
 
 function fetchAll() {
     return reports;
@@ -20,4 +24,4 @@ function getReport(id) {
     return result;
 }
 
-module.exports = { fetchAll, fetchPaths, getReport };
+module.exports = { login, fetchAll, fetchPaths, getReport };

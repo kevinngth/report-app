@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Date from "../../components/date";
 import Layout from "../../components/layout";
 import { fetchPaths, getReport } from "../../api";
@@ -14,11 +13,7 @@ export default function Report({ reportData }) {
         approvedTimestamp,
     } = reportData;
     return (
-        <Layout>
-            <Head>
-                <title>{title}</title>
-            </Head>
-            {title}
+        <Layout title={title}>
             <br />
             Created by {username}, <Date dateString={dateCreated} />
             <br />
