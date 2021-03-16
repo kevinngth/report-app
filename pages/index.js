@@ -2,6 +2,7 @@ import useSWR from "swr";
 import Head from "next/head";
 import Link from "next/link";
 import { fetchAll } from "../api";
+import Date from "../components/date";
 import Layout from "../components/layout";
 import truncateText from "../util/truncateText";
 import utilStyles from "../styles/utils.module.css";
@@ -34,7 +35,7 @@ export default function Home() {
                                 key={report.id}
                             >
                                 <a className="card">
-                                    <Date dateString={date} />
+                                    <Date dateString={report.dateCreated} />
                                     <h3>{report.title} &rarr;</h3>
                                     <p>{truncateText(report.content, 30)}</p>
                                 </a>
