@@ -1,20 +1,19 @@
 import Head from "next/head";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "./layout.module.css";
-import utilStyles from "../styles/utils.module.css";
-import Link from "next/link";
 import { name, siteTitle } from "../util/const";
+import utilStyles from "../styles/utils.module.css";
 
 export default function Layout({ children, home }) {
     return (
         <div className={styles.container}>
             <Head>
                 <meta name="og:title" content={siteTitle} />
-                <meta name="twitter:card" content="summary_large_image" />
             </Head>
             <header className={styles.header}>
                 {home ? (
-                    <h1 className={utilStyles.heading2Xl}>{name}</h1>
+                    <h1 className={utilStyles.heading2Xl}>{siteTitle}</h1>
                 ) : (
                     <>
                         <Link href="/">

@@ -1,11 +1,18 @@
+import useSWR from "swr";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../components/layout";
 import truncateText from "../util/truncateText";
+import { fetchAll } from "../api";
 import utilStyles from "../styles/utils.module.css";
-import { name, siteTitle, accountType, reports } from "../util/const";
+import { name, siteTitle, accountType } from "../util/const";
 
 export default function Home() {
+    const { data, error } = useSWR("/api/user/123", fetchAll);
+
+    if (error) return <div>failed to load</div>;
+    if (!data) return <div>loading...</div>;
+
     return (
         <Layout home>
             <Head>
@@ -20,7 +27,7 @@ export default function Home() {
                 </p>
 
                 <div className="grid">
-                    {reports.map((report) => {
+                    {data.map((report) => {
                         return (
                             <Link
                                 href={"/reports/" + report.id}
