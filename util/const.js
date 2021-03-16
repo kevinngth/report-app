@@ -1,4 +1,5 @@
 const name = "Stranger";
+const siteTitle = "Report App";
 const accountType = "NORMAL";
 const reports = [
     {
@@ -42,4 +43,4 @@ const reports = [
     },
 ];
 
-module.exports = { name, accountType, reports };
+module.exports = { name, siteTitle, accountType, reports };
