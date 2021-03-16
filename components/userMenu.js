@@ -12,7 +12,7 @@ export default function UserMenu({ user }) {
                 </div>
             </div>
             {user ? (
-                <Button href="/user/logout">Log Out</Button>
+                <Button href="/">Log Out</Button>
             ) : (
                 <Button href="/user/login">Login/Register</Button>
             )}

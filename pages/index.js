@@ -1,9 +1,8 @@
 import useSWR from "swr";
-import Link from "next/link";
 import { fetchAll } from "../api";
-import Date from "../components/date";
 import Layout from "../components/layout";
-import truncateText from "../util/truncateText";
+import TableRow from "../components/tableRow";
+import TableHeader from "../components/tableHeader";
 
 export default function Home() {
     const { data, error } = useSWR("/api/user/123", fetchAll);
@@ -13,17 +12,22 @@ export default function Home() {
 
     return (
         <Layout title="Dashboard">
-            {data.map((report) => {
-                return (
-                    <Link href={"/reports/" + report.id} key={report.id}>
-                        <a>
-                            <Date dateString={report.dateCreated} />
-                            <h3>{report.title} &rarr;</h3>
-                            <p>{truncateText(report.content, 30)}</p>
-                        </a>
-                    </Link>
-                );
-            })}
+            <div class="flex flex-col">
+                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <TableHeader />
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    {data.map((report) => {
+                                        return <TableRow report={report} />;
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </Layout>
     );
 }

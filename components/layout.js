@@ -1,9 +1,10 @@
 import Navbar from "./navbar";
+import { user } from "../const";
 
 export default function Layout({ children, title }) {
     return (
         <div>
-            <Navbar></Navbar>
+            <Navbar user={user}></Navbar>
             <div>
                 <header className="bg-white shadow">
                     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -21,25 +22,3 @@ export default function Layout({ children, title }) {
         </div>
     );
 }
-/* <header>
-                {home ? (
-                    <h1></h1>
-                ) : (
-                    <>
-                        <h2>
-                            <Link href="/">
-                                <a>{name}</a>
-                            </Link>
-                        </h2>
-                    </>
-                )}
-            </header>
-            <main></main>
-            {!home && (
-                <div>
-                    <Link href="/">
-                        <a>← Back to home</a>
-                    </Link>
-                </div>
-            )}
-       */
